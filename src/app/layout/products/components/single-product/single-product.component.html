@@ -1,0 +1,40 @@
+<div
+class="card w-100 m-1 rounded"
+[ngClass]="{ 'border border-warning border-2': productDetails?.lowQuantity }"
+>
+<img
+  [src]="productDetails?.ProductImg"
+  class="card-img-top"
+  [alt]="productDetails?.ProductName"
+/>
+<div class="card-body">
+  <h5 class="card-title">{{ productDetails?.ProductName }}</h5>
+  <p class="card-text mb-0">
+    Price:
+    {{ productDetails?.ProductPrice | currency : "USD" : "symbol" : "1.2-2" }}
+  </p>
+  <div>
+    Availabily: {{ productDetails?.AvailablePieces }}
+    <span *ngIf="productDetails?.lowQuantity" class="badge bg-warning text-dark">Low Quantity</span>
+  </div>
+  <a class="btn btn-primary" (click)="editProduct(editTemplate)">Edit</a>
+</div>
+</div>
+
+<ng-template #editTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Edit {{ productDetails?.ProductName }}</h4>
+      <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editForm" (ngSubmit)="saveProduct()">
+          <div class="mb-3">
+            <label for="productQuantity" class="form-label">Quantity</label>
+            <input type="number" id="productQuantity" class="form-control" formControlName="quantity" min="0">
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+  </ng-template>

@@ -1,0 +1,19 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav-content>
+    <app-navbar (sidenavToggle)="toggleSidenav()"></app-navbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+  <mat-sidenav #sidenav mode="side" position="end">
+    <mat-toolbar>
+      <span>Sidenav</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="sidenav.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div>
+      <!-- Add your sidenav content here -->
+      <p>Some content in the sidenav</p>
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container>

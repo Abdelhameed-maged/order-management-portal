@@ -1,0 +1,24 @@
+<p>
+    Payment type: {{ orderDetails?.PaymentType }}<br />
+    Issued on: {{ orderDetails?.OrderDate | date:'fullDate' }}
+  </p>
+  <table class="table-striped table-hover table-secondary w-25">
+    <thead>
+      <tr>
+        <th class="pr-2" scope="col">Product Name</th>
+        <th class="pr-2" scope="col">Price</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let singleProduct of orderDetails?.Products">
+        <td>{{ singleProduct?.ProductName }}</td>
+        <td>{{ singleProduct?.Price | currency:'USD'}}</td>
+        <td>{{ singleProduct?.Quantity }}</td>
+      </tr>
+    </tbody>
+    <tfoot class="w-100 mt-1 pt-1 separetor">
+        Total items: {{totalItems}}<br>
+        Total price: {{totalPrice | currency:'USD' }}
+      </tfoot>
+  </table>
