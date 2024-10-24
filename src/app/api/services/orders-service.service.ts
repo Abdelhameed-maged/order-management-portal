@@ -1,40 +1,47 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import ordersData from '../order-master-dp/orders.json';
+import rawOrdersData from '../order-master-dp/orders.json';
 import usersData from '../order-master-dp/users.json';
 import { ProductsServiceService } from './products-service.service';
 import { map } from 'rxjs/operators';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'platform'
 })
 export class OrdersServiceService {
-  private ordersSubject: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(ordersData);
+  private ordersSubject: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(rawOrdersData.map(order => ({
+    ...order,
+    OrderDate: new Date(order.OrderDate)
+  })));
   public orders$: Observable<Order[]> = this.ordersSubject.asObservable();
 
-  constructor(private productService: ProductsServiceService) { }
+  constructor(private productService: ProductsServiceService, private usersService: UsersService) { }
 
   getOrders(): Observable<Order[]> {
-    this.productService.getProducts().subscribe((res) => {
-      ordersData.forEach((order: Order) => {
-        const user = usersData.find((u) => u.Id === order.UserId);
-        order.relatedUser = user;
-        
-        (order.Products as unknown as OrderProduct[]).forEach((o) => {
-          const product = res.find((r) => r.ProductId === o.ProductId);
-          o.ProductName = product ? product.ProductName : 'N/A';
-          o.ProductImg = product ? product.ProductImg : '';
-          o.Price = product ? product.ProductPrice : 0;
+    this.productService.getProducts().subscribe((products) => {
+      this.usersService.getUsers().subscribe((users) => {
+        const clonedOrders = structuredClone(this.ordersSubject.value);
+        clonedOrders.forEach((order: Order) => {
+          const user = users.find((u) => u.Id === order.UserId);
+          order.relatedUser = user;
+
+          (order.Products as unknown as OrderProduct[]).forEach((o) => {
+            const product = products.find((p) => p.ProductId === o.ProductId);
+            o.ProductName = product ? product.ProductName : 'N/A';
+            o.ProductImg = product ? product.ProductImg : '';
+            o.Price = product ? product.ProductPrice : 0;
+          });
         });
+        this.updateOrders(clonedOrders as unknown as Order[]);
       });
-      this.updateOrders(ordersData as unknown as Order[]);
     });
     return this.orders$;
   }
 
   addOrder(order: Order): void {
     const currentOrders = this.ordersSubject.value;
-    this.ordersSubject.next([...currentOrders, order]);
+    this.ordersSubject.next([structuredClone(order), ...currentOrders]);
   }
 
   updateOrders(newOrders: Order[]): void {
@@ -68,7 +75,7 @@ export class OrdersServiceService {
 
 export interface Order {
   OrderId: number;
-  OrderDate: string;
+  OrderDate: Date;
   UserId: string;
   Products: OrderProduct[];
   PaymentType: string;

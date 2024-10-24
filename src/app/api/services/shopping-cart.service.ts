@@ -69,8 +69,8 @@ export class ShoppingCartService {
     }));
 
     const newOrder: Order = {
-      OrderId: Date.now(), // Generate a unique order ID
-      OrderDate: new Date().toISOString(),
+      OrderId: Date.now(), 
+      OrderDate: new Date(),
       UserId: userId,
       Products: orderProducts,
       PaymentType: paymentType
@@ -78,6 +78,10 @@ export class ShoppingCartService {
 
     this.ordersService.addOrder(newOrder);
     this.clearCart();
+  }
+
+  hasItems(): boolean {
+    return this.cartSubject.value.length > 0;
   }
 }
 

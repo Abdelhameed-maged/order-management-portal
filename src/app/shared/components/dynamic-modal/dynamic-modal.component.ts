@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -6,14 +6,12 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './dynamic-modal.component.html',
   styleUrls: ['./dynamic-modal.component.scss']
 })
-export class DynamicModalComponent implements OnInit {
+export class DynamicModalComponent {
 
   title?: string;
   closeBtnName?: string;
-  message: string = "";
+  message = "";
 
   constructor(public bsModalRef: BsModalRef) {}
 
-  ngOnInit() {
-  }
 }

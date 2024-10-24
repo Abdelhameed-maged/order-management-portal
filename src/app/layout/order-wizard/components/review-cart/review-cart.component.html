@@ -1,1 +1,24 @@
-<p>review-cart works!</p>
+<div class="review-cart container mt-4">
+    <form [formGroup]="cartForm" (ngSubmit)="confirmOrder()">
+      <div formArrayName="items">
+        <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="cart-item row mb-3">
+          <div class="col-md-2">
+            <img [src]="item.get('ProductImg')?.value" alt="{{ item.get('ProductName')?.value }}" class="img-fluid rounded">
+          </div>
+          <div class="col-md-8">
+            <h3>{{ item.get('ProductName')?.value }}</h3>
+            <p>Price: {{ item.get('Price')?.value | currency }}</p>
+            <div class="form-group">
+              <label for="quantity-{{ i }}">Quantity:</label>
+              <input id="quantity-{{ i }}" type="number" formControlName="Quantity" class="form-control w-auto d-inline-block">
+            </div>
+          </div>
+          <div class="col-md-2 d-flex align-items-center">
+            <button type="button" class="btn btn-primary me-2" (click)="updateItem(i)">Update</button>
+            <button type="button" class="btn btn-danger" (click)="deleteItem(item.get('ProductId')?.value)">Remove</button>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="cartForm.invalid">Confirm Order</button>
+    </form>
+  </div>

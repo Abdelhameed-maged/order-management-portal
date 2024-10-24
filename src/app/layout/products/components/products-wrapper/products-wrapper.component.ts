@@ -12,7 +12,6 @@ export class ProductsWrapperComponent implements OnInit {
   ngOnInit(): void {
     this.productsService.getProducts().subscribe((res: Product[]) => {
       this.productsList = res;
-      console.log(res);
     });
   }
 }

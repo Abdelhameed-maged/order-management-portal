@@ -6,6 +6,7 @@ import { ReviewCartComponent } from './components/review-cart/review-cart.compon
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
 import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
   ],
   imports: [
     CommonModule,
-    OrderWizardRoutingModule
+    OrderWizardRoutingModule,
+    SharedModule
   ]
 })
 export class OrderWizardModule { }

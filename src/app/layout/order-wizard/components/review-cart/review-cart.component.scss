@@ -1,0 +1,41 @@
+.review-cart {
+    min-height: 100vh;
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+  
+      .product-img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 1rem;
+      }
+  
+      .product-details {
+        flex: 1;
+  
+        h3 {
+          margin: 0;
+        }
+  
+        p {
+          margin: 0.5rem 0;
+        }
+  
+        label {
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+  
+        input {
+          width: 60px;
+          margin-right: 1rem;
+        }
+  
+        button {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }

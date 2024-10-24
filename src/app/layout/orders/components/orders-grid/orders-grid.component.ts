@@ -13,7 +13,10 @@ export class OrdersGridComponent implements OnInit {
   constructor(private ordersService: OrdersServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.ordersService.getOrders().subscribe((res) => this.ordersList = res)
+    this.ordersService.getOrders().subscribe((res) => {
+      this.ordersList = res;
+      this.ordersList.sort((a, b) => new Date(b.OrderDate).getTime() - new Date(a.OrderDate).getTime());
+    });
   }
 
   navToOrder(id: number): void {

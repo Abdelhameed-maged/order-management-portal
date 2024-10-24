@@ -8,9 +8,8 @@ import { Order } from 'src/app/api/services/orders-service.service';
 })
 export class OrderDetailsComponent implements OnInit {
   @Input() orderDetails!: Order;
-  totalItems: number = 0;
-  totalPrice: number = 0
-  constructor() { }
+  totalItems = 0;
+  totalPrice = 0
 
   ngOnInit(): void {
 

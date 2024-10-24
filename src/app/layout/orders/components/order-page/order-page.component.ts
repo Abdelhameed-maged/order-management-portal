@@ -9,8 +9,8 @@ import { Order } from '../../../../api/services/orders-service.service';
 })
 export class OrderPageComponent implements OnInit {
   orderDetails!: Order;
-  totalItems: number = 0;
-  totalPrice: number = 0;
+  totalItems = 0;
+  totalPrice = 0;
 
   constructor(private route: ActivatedRoute) {}
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ShoppingCartService, CartItem } from '../../../api/services/shopping-cart.service';
-import { ProductsServiceService, Product } from '../../../api/services/products-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -17,7 +17,7 @@ export class ShoppingCartComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private shoppingCartService: ShoppingCartService,
-    private productsService: ProductsServiceService
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +43,6 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   checkout(): void {
-    this.shoppingCartService.checkout('8475-2345-2312', 'online');
+    this.router.navigate(['/order-wizard/review-order']);
   }
 }

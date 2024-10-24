@@ -1,1 +1,45 @@
-<p>order-summary works!</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Order Summary</h2>
+          </div>
+          <div class="card-body">
+            <div *ngIf="order">
+              <h3>User Information</h3>
+              <p><strong>Name:</strong> {{ order.relatedUser?.Name }}</p>
+              <p><strong>Email:</strong> {{ order.relatedUser?.Email }}</p>
+              <p><strong>Phone:</strong> {{ order.relatedUser?.Phone }}</p>
+              <p><strong>Address:</strong> {{ order.relatedUser?.Address }}</p>
+  
+              <h3>Products</h3>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of productsDetails">
+                    <td>{{ product.ProductName }}</td>
+                    <td>{{ product.Quantity }}</td>
+                    <td>{{ product.ProductPrice | currency }}</td>
+                    <td>{{ product.Total | currency }}</td>
+                  </tr>
+                </tbody>
+              </table>
+  
+              <h3>Payment Method</h3>
+              <p>{{ order.PaymentType }}</p>
+  
+              <button class="btn btn-primary mt-3" (click)="confirmOrder()">Confirm Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

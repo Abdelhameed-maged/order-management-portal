@@ -1,1 +1,27 @@
-<p>payment-method works!</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Payment Method</h2>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="paymentType">Select Payment Method:</label>
+                <select id="paymentType" formControlName="paymentType" class="form-control">
+                  <option value="">-- Select Payment Method --</option>
+                  <option value="online">Online</option>
+                  <option value="cash">Cash</option>
+                </select>
+                <div *ngIf="paymentForm.get('paymentType')?.invalid && paymentForm.get('paymentType')?.touched" class="text-danger mt-2">
+                  Payment method is required.
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary mt-3" [disabled]="paymentForm.invalid">Next</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

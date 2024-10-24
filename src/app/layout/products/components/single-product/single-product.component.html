@@ -17,8 +17,8 @@ class="card w-100 m-1 rounded"
     Availabily: {{ productDetails?.AvailablePieces }}
     <span *ngIf="productDetails?.lowQuantity" class="badge bg-warning text-dark">Low Quantity</span>
   </div>
-  <a class="btn btn-primary m-1" (click)="editProduct(editTemplate)">Edit</a>
-  <a class="btn btn-success m-1 " (click)="addToCart()">Add to Cart</a>
+  <a class="btn btn-primary m-1" (click)="editProduct(editTemplate)" (keydown.enter)="editProduct(editTemplate)" tabindex="0">Edit</a>
+  <a class="btn btn-success m-1 " (click)="addToCart()" (keydown.enter)="addToCart()" tabindex="0">Add to Cart</a>
 
   
 </div>
@@ -27,7 +27,7 @@ class="card w-100 m-1 rounded"
 <ng-template #editTemplate>
     <div class="modal-header">
       <h4 class="modal-title pull-left">Edit {{ productDetails?.ProductName }}</h4>
-      <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()" (keydown.enter)="modalRef?.hide()">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
       </button>
     </div>

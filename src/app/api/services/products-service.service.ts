@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, from } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import productsData from '../order-master-dp/porducts.json'
 @Injectable({
   providedIn: 'platform'
@@ -7,8 +7,6 @@ import productsData from '../order-master-dp/porducts.json'
 export class ProductsServiceService {
   private productsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.initializeProducts(productsData) as Product[]);
   public products$: Observable<Product[]> = this.productsSubject.asObservable();
-
-  constructor() { }
 
   getProducts(): Observable<Product[]> {
     return this.products$;
