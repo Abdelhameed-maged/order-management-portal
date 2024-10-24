@@ -1,0 +1,52 @@
+<div class="container-fluid p-4">
+  <h1>User Information</h1>
+  <p>
+    <ng-container *ngIf="orderDetails?.relatedUser?.Name"
+      >User: {{ orderDetails.relatedUser?.Name }}<br
+    /></ng-container>
+    <ng-container *ngIf="orderDetails?.relatedUser?.Email"
+      >Email: {{ orderDetails.relatedUser?.Email }}<br
+    /></ng-container>
+    <ng-container *ngIf="orderDetails?.relatedUser?.Phone"
+      >Phone: {{ orderDetails.relatedUser?.Phone }}<br
+    /></ng-container>
+    <ng-container *ngIf="orderDetails?.relatedUser?.Address"
+      >Address: {{ orderDetails.relatedUser?.Address }}</ng-container
+    >
+  </p>
+  <h1>Order Information</h1>
+  <p>
+    <ng-container *ngIf="orderDetails?.PaymentType"
+      >Payment type: {{ orderDetails.PaymentType }}<br
+    /></ng-container>
+    <ng-container *ngIf="orderDetails?.OrderDate"
+      >Issued on: {{ orderDetails.OrderDate }}</ng-container
+    >
+  </p>
+  <table class="table-striped table-hover table-secondary w-25">
+    <thead>
+      <tr>
+        <th class="pr-2" scope="col">Product Name</th>
+        <th class="pr-2" scope="col">Price</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let singleProduct of orderDetails?.Products">
+        <td>{{ singleProduct?.ProductName }}</td>
+        <td>{{ singleProduct?.Price | currency : "USD" }}</td>
+        <td>{{ singleProduct?.Quantity }}</td>
+      </tr>
+    </tbody>
+    <tfoot class="w-100 mt-1 pt-1 separetor">
+      Total items:
+      {{
+        totalItems
+      }}<br />
+      Total price:
+      {{
+        totalPrice | currency : "USD"
+      }}
+    </tfoot>
+  </table>
+</div>

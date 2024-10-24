@@ -16,7 +16,9 @@ export class OrderDetailsComponent implements OnInit {
 
     this.orderDetails.Products.forEach((d) =>{
       this.totalItems = this.totalItems + d.Quantity;
-      this.totalPrice = this.totalPrice + (d.Quantity*d.Price)
+      if (d.Price !== undefined) {
+        this.totalPrice = this.totalPrice + (d.Quantity * d.Price);
+      }
     })
   }
 

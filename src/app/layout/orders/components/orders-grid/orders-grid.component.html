@@ -1,6 +1,6 @@
 <div class="container-fluid pt-4 orders-grid">
   <div class="rounded border-1 border m-1 p-1 w-50" *ngFor="let order of ordersList">
-    <app-order-details [orderDetails]="order"></app-order-details>
+    <app-order-details [orderDetails]="order" (click)="navToOrder(order.OrderId)"></app-order-details>
    
   </div>
 </div>

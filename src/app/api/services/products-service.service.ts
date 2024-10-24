@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, from } from 'rxjs';
 import productsData from '../order-master-dp/porducts.json'
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class ProductsServiceService {
   private productsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.initializeProducts(productsData) as Product[]);

@@ -1,1 +1,30 @@
-<p>shopping-cart works!</p>
+<div class="container">
+    <div class="mt-4">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of cartItems">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h5>{{ item.ProductName }}</h5>
+              <p>
+                Quantity: 
+                <span *ngIf="!item.editing">
+                  {{ item.Quantity }}
+                  <button class="btn btn-link btn-sm" (click)="item.editing = true">Edit</button>
+                </span>
+                <input *ngIf="item.editing" type="number" [(ngModel)]="item.Quantity" (blur)="updateItem(item)" class="form-control d-inline-block w-auto">
+              </p>
+              <p>Price: {{ item.Price | currency }}</p>
+            </div>
+            <div>
+              <button class="btn btn-danger btn-sm" (click)="deleteItem(item.ProductId)">Delete</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!cartItems.length" class="p-4 text-center text-black-50">No Items Added <br>to the cart</div>
+  
+    <div class="mt-4" *ngIf="cartItems.length">
+      <button class="btn btn-success" (click)="checkout()">Checkout</button>
+    </div>
+  </div>

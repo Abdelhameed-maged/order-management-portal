@@ -7,11 +7,13 @@ import { OrdersGridComponent } from './components/orders-grid/orders-grid.compon
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { OrderPageComponent } from './components/order-page/order-page.component';
 
 @NgModule({
   declarations: [
     OrdersGridComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    OrderPageComponent
   ],
   imports: [
     CommonModule,

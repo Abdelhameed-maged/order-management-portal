@@ -2,6 +2,7 @@ import { Component, Input, OnInit,TemplateRef  } from '@angular/core';
 import { Product, ProductsServiceService } from 'src/app/api/services/products-service.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ShoppingCartService } from 'src/app/api/services/shopping-cart.service';
 
 @Component({
   selector: 'app-single-product',
@@ -16,7 +17,9 @@ export class SingleProductComponent implements OnInit {
   constructor(
     private modalService: BsModalService, 
     private fb: FormBuilder,
-    private productService: ProductsServiceService) {}
+    private productService: ProductsServiceService,
+    private shoppingCartService: ShoppingCartService
+  ) {}
 
   ngOnInit(): void {
     this.editForm = this.fb.group({
@@ -37,6 +40,14 @@ export class SingleProductComponent implements OnInit {
       }
 
       this.modalRef?.hide();
+    }
+  }
+
+  
+  addToCart(): void {
+    if (this.productDetails) {
+      this.shoppingCartService.addItem(this.productDetails.ProductId, 1);
+
     }
   }
 }

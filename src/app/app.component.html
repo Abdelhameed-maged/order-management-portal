@@ -4,8 +4,8 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
   <mat-sidenav #sidenav mode="side" position="end">
-    <mat-toolbar>
-      <span>Sidenav</span>
+    <mat-toolbar class="d-flex flex-row justify-content-between">
+      <span>Shopping Cart</span>
       <span class="spacer"></span>
       <button mat-icon-button (click)="sidenav.close()">
         <mat-icon>close</mat-icon>
@@ -13,7 +13,7 @@
     </mat-toolbar>
     <div>
       <!-- Add your sidenav content here -->
-      <p>Some content in the sidenav</p>
+      <app-shopping-cart />
     </div>
   </mat-sidenav>
 </mat-sidenav-container>

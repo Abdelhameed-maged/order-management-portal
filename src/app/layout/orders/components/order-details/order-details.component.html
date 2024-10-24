@@ -1,6 +1,6 @@
 <p>
-    Payment type: {{ orderDetails?.PaymentType }}<br />
-    Issued on: {{ orderDetails?.OrderDate | date:'fullDate' }}
+    <ng-container *ngIf="orderDetails?.PaymentType">Payment type: {{ orderDetails.PaymentType }}<br /></ng-container>
+    <ng-container *ngIf="orderDetails?.OrderDate">Issued on: {{ orderDetails.OrderDate  }}</ng-container>
   </p>
   <table class="table-striped table-hover table-secondary w-25">
     <thead>
